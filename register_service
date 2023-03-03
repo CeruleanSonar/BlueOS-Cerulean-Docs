@@ -1,0 +1,9 @@
+{
+    "name":"Cerulean Docs",
+    "description":"Offline Access for Cerulean Docs",
+    "icon":"mdi-book-information-variant",
+    "company":"Cerulean Sonar",
+    "version":"1.1.0",
+    "webpage":"https://ceruleansonar.com",
+    "api":""
+ }
