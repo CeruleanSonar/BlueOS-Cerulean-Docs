@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
+
 #From https://gist.github.com/HaiyangXu/ec88cbdce3cdbac7b8d5
 import http.server
 import socketserver
 
-PORT = 80
+PORT = 9003
 #DIRECTORY = "/static"
-DIRECTORY = "../static"
+#DIRECTORY = "./"
 
 class HttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     extensions_map = {
@@ -21,14 +23,15 @@ class HttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         '.json': 'application/json',
         '.xml': 'application/xml',
     }
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=DIRECTORY, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, directory=DIRECTORY, **kwargs)
     
 
-httpd = socketserver.TCPServer(("localhost", PORT), HttpRequestHandler)
-
+#httpd = socketserver.TCPServer(("localhost", PORT), HttpRequestHandler)
+socketserver.TCPServer.allow_reuse_address = True
 try:
-    print(f"serving at http://localhost:{PORT}")
-    httpd.serve_forever()
+    with socketserver.TCPServer(("", PORT), HttpRequestHandler) as httpd:
+        print("serving at port", PORT)
+        httpd.serve_forever()
 except KeyboardInterrupt:
     pass

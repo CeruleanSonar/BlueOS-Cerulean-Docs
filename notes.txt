@@ -1,0 +1,6 @@
+build:
+
+docker buildx build --platform linux/amd64,linux/arm/v7 . -t nicknothom/blueos-cerulean-docs:latest --provenance=false --output type=registry
+
+clone
+wget      --recursive      --level 6      --no-clobber      --page-requisites      --adjust-extension      --span-hosts      --convert-links --restrict-file-names=windows      --domains docs.ceruleansonar.com,gitbook.io,files.gitbook.com,cdn.iframe.ly,cdn.polyfill.io,app.gitbook.com      --no-parent     docs.ceruleansonar.com

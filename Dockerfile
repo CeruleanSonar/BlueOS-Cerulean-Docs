@@ -1,22 +1,11 @@
 from python:3.9-slim-bullseye
 
 COPY static /static
-COPY src /src
 
-LABEL version "1.0.0"
-LABEL permissions '{\
-    "ExposedPorts": {\
-    "80/tcp": {}\
-    },\
-    "HostConfig": {\
-    "PortBindings": {\
-    "80/tcp": [\
+LABEL version "1.1.0"
+LABEL permissions '\
     {\
-    "HostPort": ""\
-    }\
-    ]\
-    }\
-    }\
+    "NetworkMode": "host"\
     }'
 LABEL authors '[\
     {\
@@ -35,5 +24,4 @@ LABEL website 'https://ceruleansonar.com'
 LABEL support 'https://forum.ceruleansonar.com/categories'
 LABEL requirements "core >  1"
 
-EXPOSE 80/tcp
-ENTRYPOINT cd /src && python server.py
+ENTRYPOINT cd /static && ./server.py
